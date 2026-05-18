@@ -1,26 +1,54 @@
 #include <stdio.h>
 #include <stdbool.h>
-int tempsum(int temp[7]);
-int maxtemp(int temp[7]);
-int mintemp(int temp[7]);
-int tempdisplay(int temp[7]);
-int main(){
-    int temp[7];
-    for (int i = 1; i <8;i++){
-        printf("Enter Day %d temperature\n");
-        scanf("%d",&temp[i]);
+float tempsum(float temp[7]);
+float maxtemp(float temp[7]);
+float mintemp(float temp[7]);
+float tempdisplay(float temp[7]);
+int main()
+{
+    float temp[7];
+    for (int i = 0 ;i < 7;i++){
+        printf("Enter Day %d temperature\n",i+1);
+        scanf("%f",&temp[i]);
     }
+    tempsum(temp);
     maxtemp(temp);
     mintemp(temp);
-    tempsum(temp);
     tempdisplay(temp);
 }
-int tempsum(int temp[7]){
-    int tempsum;
-    int tempsum2;
-    for(int i = 1;i<8;i++){
-        tempsum = tempsum+temp[i];
-        tempsum2 = tempsum/7;
+float tempsum(float temp[7]){
+    float tempsum3 = 0.0;
+    float tempsum2 = 0.0;
+    for(int i = 0;i<7;i++){
+        tempsum3 = tempsum3+temp[i];
+        tempsum2 = tempsum3/7;
     }
-    printf("Average temp: %d",tempsum2);
+    printf("Average temp: %.2f\n",tempsum2);
+    return tempsum2;
+}
+float maxtemp(float temp[7]){
+    float tempmax=temp[0];
+    for(int i = 0;i<7;i++){
+        if(temp[i]>tempmax){
+            tempmax = temp[i];
+        }
+    }
+    printf("Max temp: %.2f\n",tempmax);
+    return tempmax;
+}
+float mintemp(float temp[7]){
+    float tempmin=temp[0];
+    for(int i = 0;i<7;i++){
+        if(temp[i]<tempmin){
+            tempmin = temp[i];
+        }
+    }
+    printf("Min temp: %.2f\n",tempmin);
+    return tempmin;
+}
+float tempdisplay(float temp[7]){
+    printf("---------Result----------\n");
+    for (int i=0;i<7;i++){
+        printf("Day %d, Temp: %.2f\n",i+1,temp[i]);
+    }
 }
